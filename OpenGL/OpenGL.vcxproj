@@ -157,8 +157,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="IBO.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VAO.h" />
@@ -172,9 +176,15 @@
   <ItemGroup>
     <None Include="Res\Shaders\bas2.shader" />
     <None Include="Res\Shaders\Basic.shader" />
+    <None Include="Res\Shaders\newBasic.shader" />
+    <None Include="Res\Shaders\Obstacle.shader" />
+    <None Include="Res\Shaders\Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Res\Textures\container.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="old.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,6 +10,10 @@ class Texture {
 	int height;
 	int bpp;
 public:
+	Texture() {
+
+	}
+
 	Texture(const char * filepath) {
 		unsigned char * bytes = stbi_load(filepath, &width, &height, &bpp, 4);
 		if (!bytes) {

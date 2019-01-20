@@ -4,6 +4,10 @@ class IBO {
 	unsigned int id;
 	unsigned int count;
 public:
+	IBO() {
+
+	}
+
 	IBO(const unsigned int * data, const unsigned int cnt) {
 		glGenBuffers(1, &id);
 		bind();

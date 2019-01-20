@@ -1,0 +1,54 @@
+﻿/*
+float triangle[] = {
+		0.0f , 0.5f, 0.5f , 1.0f,
+		0.5f, 0.0f, 1.0f , 0.0f,
+		-0.5f, 0.0f , 0.0f , 0.0f
+	};
+	float vertices[] = {
+		// Позиции          // Цвета             // Текстурные координаты
+		 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // Верхний правый
+		 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // Нижний правый
+		-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // Нижний левый
+		-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // Верхний левый
+	};
+	float square1[] = {
+		-0.5f , 0.5f, 1.0f , 1.0f, //left top
+		0.5f , 0.5f ,0.5f , 0.5f, // right top
+		-0.5f , -0.5f,0.5f ,0.5f , // left bot
+		0.5f , -0.5f, 0.5f , 0.5f  // right bot
+	};
+	float square[] = {
+		50.0f, 350.0f, //left top
+		350.0f , 350.0f , // right top
+		50.0f , 50.0f, // left bot
+		350.0f , 50.0f // right bot
+	};
+	unsigned int indices[] = {
+		0 , 1 , 3 , 1 , 2 , 3
+	};
+	VBO vb(vertices, sizeof(vertices));
+	IBO ib(indices, 6);
+	ib.bind();
+	VAO va;
+	VAO::Layout la;
+	la.add<float>(3);
+	la.add<float>(3);
+	la.add<float>(2);
+	va.addLayout(la, vb);
+
+	Renderer rer;
+	Shader shad("Res/Shaders/Basic.shader");
+
+	glm::mat4 proj = presp(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+	glm::mat4 view2 = glm::lookAt(
+		glm::vec3(1, 1, 1), // Камера находится в мировых координатах (4,3,3);
+		glm::vec3(0, 0, 0), // И направлена в начало координа�);
+		glm::vec3(0, 1, 0)  // "Голова" находится сверх�);
+	);
+	glm::mat4 model = glm::mat4(1.0f);
+
+	glm::mat4 MVP = proj * model;
+	Texture txt("Res/Textures/container.jpg");
+
+*/

@@ -1,11 +1,11 @@
 ﻿  OpenGL.cpp
-c:\users\админ\source\repos\opengl\opengl\shader.h(104): warning C4244: аргумент: преобразование "GLint" в "GLfloat", возможна потеря данных
-c:\users\админ\source\repos\opengl\opengl\vao.h(12): warning C4091: inline : пропускается слева от "VAO::tupple", когда ни одна переменная не объявлена
-c:\users\админ\source\repos\opengl\opengl\vao.h(39): warning C4091: inline : пропускается слева от "VAO::Layout", когда ни одна переменная не объявлена
-c:\users\админ\source\repos\opengl\opengl\vao.h(48): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\админ\source\repos\opengl\opengl\renderer.h(8): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-Debug\stb_image.obj : warning LNK4042: юс·хъЄ єърчрэ сюыхх юфэюую Ёрчр; ыш°эшх эх єўшЄ√тр■Єё
-LINK : warning LNK4098: сшсышюЄхър яю єьюыўрэш■ "LIBCMT" яЁюЄштюЁхўшЄ шёяюы№чютрэш■ фЁєушї сшсышюЄхъ; шёяюы№чєщЄх ярЁрьхЄЁ /NODEFAULTLIB:library
-LINK : warning LNK4098: сшсышюЄхър яю єьюыўрэш■ "MSVCRT" яЁюЄштюЁхўшЄ шёяюы№чютрэш■ фЁєушї сшсышюЄхъ; шёяюы№чєщЄх ярЁрьхЄЁ /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: "vc120.pdb" PDB эх эрщфхэ ё "glew32s.lib(glew.obj)" шыш эр "C:\Users\рфьшэ\source\repos\OpenGL\Debug\vc120.pdb"; ъюьяюэютър юс·хъЄр т√яюыэ хЄё  ъръ яЁш юЄёєЄёЄтшш юЄырфюўэ√ї фрээ√ї
-  OpenGL.vcxproj -> C:\Users\админ\source\repos\OpenGL\Debug\OpenGL.exe
+c:\users\stkau\desktop\ogl\opengl\vao.h(12): warning C4091: 'inline ': ignored on left of 'VAO::tupple' when no variable is declared
+c:\users\stkau\desktop\ogl\opengl\vao.h(39): warning C4091: 'inline ': ignored on left of 'VAO::Layout' when no variable is declared
+c:\users\stkau\desktop\ogl\opengl\vao.h(48): warning C4018: '<': signed/unsigned mismatch
+c:\users\stkau\desktop\ogl\opengl\shader.h(116): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
+c:\users\stkau\desktop\ogl\opengl\renderer.h(10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\stkau\desktop\ogl\opengl\gamelogic.h(109): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\stkau\desktop\ogl\opengl\gamelogic.h(116): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\stkau\desktop\ogl\opengl\gamelogic.h(205): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\stkau\desktop\ogl\opengl\opengl.cpp(74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  OpenGL.vcxproj -> C:\Users\stkau\Desktop\OGL\Debug\OpenGL.exe

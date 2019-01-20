@@ -15,6 +15,9 @@ class Shader {
 	unsigned int id;
 
 public:
+	Shader() {
+
+	}
 	Shader(const std::string filepath) {
 		std::ifstream file(filepath);
 
@@ -75,6 +78,15 @@ public:
 		}
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
+	}
+	void setUniformVec3(const GLchar * name , glm::vec3 &color) {
+		bind();
+		unsigned int loc = glGetUniformLocation(id, name);
+		if (loc == -1) {
+			Log("uniform didnt find");
+		}
+		glUniform3fv(loc, 1, &color[0]);
+		unBind();
 	}
 	void setUniform4m(const GLchar * name, glm::mat4 &mat) {
 		bind();
