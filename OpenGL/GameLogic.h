@@ -2,6 +2,70 @@
 #include "Point.h"
 #include <thread> 
 #include <vector>
+
+void loadOBJ(const char * path, std::vector<glm::vec3> & cords , std::vector<glm::vec2> & uvCords) {
+	float ** fileArr;
+	std::ifstream file(path);
+	std::vector<glm::vec3> tempVertex;
+	std::vector<glm::vec2> tempTextCord;
+
+	
+	std::vector<glm::vec3> tempNorm;
+	std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
+	int mode = -1;
+	std::string str;
+	while (getline(file, str)) {
+		if (str[0] == 'v' && str[1] == ' ') {
+			std::istringstream ss(str);
+			std::string fWord;
+			ss >> fWord;
+			float x, y, z;
+			ss >> x >> y >> z;
+			tempVertex.push_back({ x , y , z });
+
+		}
+		else if (str[0] == 'v' && str[1] == 't') {
+			std::istringstream ss(str);
+			std::string fWord;
+			float x, y;
+			ss >> fWord;
+			ss >> x >> y;
+			tempTextCord.push_back({ x , y });
+		}
+		else if (str[0] == 'v' && str[1] == 'n') {
+			std::istringstream ss(str);
+			std::string fWord;
+			ss >> fWord;
+			float x, y, z;
+			ss >> x >> y >> z;
+			tempNorm.push_back({ x , y , z });
+		}
+		else if (str[0] == 'f') {
+			std::istringstream ss(str);
+			std::string fWord;
+			ss >> fWord;
+			char buff;
+			unsigned int n1;
+			unsigned int n2;
+			unsigned int n3;
+			//-ss >>  vIndex[0] >> buff >> uvIndex[1] >> nIndex[2] 
+			//>> buff >> vIndex[0] >> uvIndex[1] >> uvIndex[2] >> buff >> vIndex[0] >> uvIndex[1] >> nIndex[2];
+			while (ss >> n1 >> buff >> n2 >> buff >> n3) {
+				vertexIndices.push_back(n1);
+				uvIndices.push_back(n2);
+			}
+		}
+	}
+	for (int i = 0; i < vertexIndices.size(); i++) {
+		unsigned int vertexIndex = vertexIndices[i];
+		cords.push_back(tempVertex[vertexIndex - 1]);
+	}
+	for (int i = 0; i < uvIndices.size(); i++) {
+		unsigned int uvIndex = uvIndices[i];
+		uvCords.push_back(tempTextCord[uvIndex - 1]);
+	}
+}
+
 class Player {
 
 	VAO va;
@@ -15,6 +79,8 @@ class Player {
 	float speed;
 	short snakeSize;
 	int dir;
+	bool canGo;
+	float iTime;
 	std::vector<Point> cords;
 public:
 	Player(float size, float x, float y) {
@@ -22,7 +88,7 @@ public:
 		this->x = 0;
 		this->y = 0;
 		dir = 0;
-		speed = 200;
+		speed = 20;
 		float arr[8];
 		makeArr(arr, 320, 240, size);
 		unsigned int ind[] = {
@@ -39,7 +105,8 @@ public:
 		ib = IBO(ind, 6);
 
 		snakeSize = 1;
-
+		canGo = true;
+		iTime = 0;
 	}
 	void render(Renderer rer) {
 		va.bind();
@@ -83,16 +150,15 @@ public:
 			//x += speed * deltaTime;
 		}
 	}
-	void move(float deltaTime) {
-		float localSpeed = 100;
+	void move(float deltaTime = 1) {
 		switch (dir) {
-		case 0:	 y -= localSpeed * deltaTime;
+		case 0:	 y -= speed * deltaTime;
 			break;
-		case 1:	x -= localSpeed * deltaTime;
+		case 1:	x -= speed * deltaTime;
 			break;
-		case 2:	y += localSpeed * deltaTime;
+		case 2:	y += speed * deltaTime;
 			break;
-		case 3:	x += localSpeed * deltaTime;
+		case 3:	x += speed * deltaTime;
 			break;
 		}
 	}
@@ -111,17 +177,40 @@ public:
 
 		}
 	}
-	void update(GLFWwindow * window, float deltaTime, Renderer rer) {
+	void update(GLFWwindow * window, float deltaTime, Renderer rer, float time) {
 
-		timer(0.3, window, deltaTime);
 		keyCheck(window, deltaTime);
-		move(deltaTime);
-		moveY();
-		moveX();
+		if (canGo) {
+			iTime = time;
+			moveY();
+			moveX();
+			move();
+
+			canGo = false;
+		}
+		if (glfwGetTime() - iTime > 0.4f) {
+			canGo = true;
+		}
+
 		render(rer);
 	}
 };
 
+void makeArra(float arr[], float X, float Y, float size) {
+	float x = 320;
+	float y = 240;
+	arr[0] = X + -size;
+	arr[1] = Y + size;
+
+	arr[2] = X + size;
+	arr[3] = Y + size;
+
+	arr[4] = X + size;
+	arr[5] = Y + -size;
+
+	arr[6] = X + -size;
+	arr[7] = Y + -size;
+}
 class Obstacle {
 
 	VAO va;

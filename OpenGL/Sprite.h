@@ -1,12 +1,14 @@
 #include "Entity.h"
 
+using glm::vec2;
+
 class Sprite : public Entity {
 
 
 public:
-	Sprite(const GLchar *  texturePath, const  GLchar * shaderPath, glm::mat4 & bas, float x, float y) {
+	Sprite(const GLchar *  texturePath, const  GLchar * shaderPath, glm::mat4 & bas, float x, float y , float size) {
 		float arr[8];
-		makeArr(arr, x, y, 20);
+		makeArr(arr, x, y, size);
 		vb = VBO(arr, sizeof(arr));
 		va = VAO();
 		VAO::Layout la;
@@ -17,17 +19,28 @@ public:
 		la.add<float>(2);
 		va.addLayout(la, vb);
 
+		txt = Texture(texturePath);
 
+		uvCords.push_back(vec2(0, 1));
+		uvCords.push_back(vec2(1, 1));
+		uvCords.push_back(vec2(1, 0));
+		uvCords.push_back(vec2(0 ,0 ));
+
+		vbCord = VBO(&uvCords[0], sizeof(vec2) * 4);
+		
+		va.addLayout(la , vbCord);
+
+		shad = Shader(shaderPath);
+		txt = Texture(texturePath);
 
 		model = glm::mat4(1);
 		view = glm::mat4(1);
 		setBasis(bas);
-		shad = Shader(shaderPath);
-		txt = Texture(texturePath);
-		MVP = projection * model * view;
+		
+		MVP = projection * view * model;
 		shad.setUniform4m("MVP", MVP);
 
-		move(glm::vec3(-100, -200, 0));
+	
 
 	}
 };

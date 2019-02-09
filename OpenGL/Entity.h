@@ -8,10 +8,13 @@ public:
 	IBO ib;
 	Texture txt;
 	Shader shad;
+	VBO vbCord;
+	std::vector<glm::vec2> uvCords;
 	glm::mat4 model;
 	glm::mat4 view;
 	glm::mat4 projection;
 	glm::mat4 MVP;
+
 	void bind() {
 		va.bind();
 		vb.bind();
@@ -24,7 +27,7 @@ public:
 	}
 	void move(glm::vec3 trans) {
 		view = glm::translate(view, trans);
-		MVP = projection * model * view;
+		MVP = MVP * view;
 		shad.setUniform4m("MVP", MVP);
 	}
 	void transform() {
